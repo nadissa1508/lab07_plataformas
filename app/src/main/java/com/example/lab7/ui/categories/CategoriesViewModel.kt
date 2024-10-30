@@ -18,7 +18,7 @@ class CategoriesViewModel(private val repository: MealRepository) : ViewModel() 
 
     private fun fetchCategories() {
         viewModelScope.launch {
-            _categories.value = repository.getCategories().categories
+            _categories.value = repository.getCategories()
         }
     }
 }

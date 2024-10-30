@@ -25,12 +25,20 @@ import coil.compose.rememberImagePainter
 import com.example.lab7.ui.model.Category
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun CategoriesScreen(viewModel: CategoriesViewModel, onCategorySelected: (String) -> Unit) {
     val categories = viewModel.categories.collectAsState().value
+    //ver si funciona xd
+    val navController = rememberNavController()
+
+    Button(onClick = { navController.navigate("supermarketList") }) {
+        Text("Ir a Lista de Supermercado")
+    }
 
     LazyColumn (
         modifier = Modifier
