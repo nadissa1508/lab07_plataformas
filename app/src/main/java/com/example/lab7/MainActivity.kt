@@ -16,6 +16,7 @@ import com.example.lab7.ui.meals.MealsScreen
 import com.example.lab7.ui.meals.MealsViewModel
 import com.example.lab7.ui.repository.MealRepository
 import com.example.lab7.ui.database.AppDatabase
+import com.example.lab7.ui.repository.SupermarketRepository
 import com.example.lab7.ui.supermarket.SupermarketViewModel
 import com.example.lab7.ui.supermarket.SupermarketListScreen
 
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
             NavHost(navController, startDestination = "categories") {
                 composable("categories") {
                     val categoriesViewModel = CategoriesViewModel(MealRepository(RetrofitService.apiService, categoryDao))
-                    CategoriesScreen(categoriesViewModel) { category ->
+                    CategoriesScreen(categoriesViewModel, navController) { category ->
                         navController.navigate("meals/$category")
                     }
                 }
@@ -51,8 +52,8 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable("supermarketList") {
-                    val supermarketViewModel = SupermarketViewModel(SupermarketRepository(AppDatabase.getInstance(this).supermarketItemDao()))
-                    SupermarketScreen(supermarketViewModel)
+                    val supermarketViewModel = SupermarketViewModel(SupermarketRepository(AppDatabase.getInstance(applicationContext).supermarketItemDao()))
+                    SupermarketListScreen(supermarketViewModel)
                 }
             }
         }

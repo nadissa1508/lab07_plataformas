@@ -26,7 +26,13 @@ class SupermarketViewModel(private val repository: SupermarketRepository) : View
     fun addItem(item: SupermarketItem) {
         viewModelScope.launch {
             repository.addItem(item)
-            fetchItems()
+            fetchItems()  // Refresca la lista después de agregar un elemento
+        }
+    }
+
+    fun insertItem(item: SupermarketItem) {
+        viewModelScope.launch {
+            repository.addItem(item)
         }
     }
 }
